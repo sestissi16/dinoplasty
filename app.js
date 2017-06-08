@@ -29,7 +29,8 @@ const app = {
         //this.list.appendChild(listItem)
         this.list.insertBefore(listItem, this.list.firstChild)
 
-        this.dinos.push(dino)
+        //add things to the beginning of the array instead of end
+        this.dinos.unshift(dino)
 
         ++ this.max
         //this resets the input box after you click enter
@@ -77,7 +78,7 @@ const app = {
                 </button>
             </div>
         `
-        
+        item.dataset.id = dino.id
         return item
     },
     
