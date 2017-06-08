@@ -45,7 +45,15 @@ const app = {
     },*/
 
     renderListItem(dino) {
-        const item = document.createElement('li')
+        const item = this.template.cloneNode(true)
+        item.classList.remove('template')
+        item.dataset.id = dino.id
+        
+        item
+            .querySelector('.dino-name')
+            .textContent = dino.name
+        //commented out to be able to follow along with class
+        /*const item = document.createElement('li')
         item.textContent = dino.name
         item.innerHTML += `
             <div class="button-group">
@@ -80,8 +88,8 @@ const app = {
                     Down
                 </button>
             </div>
-        `
-        item.dataset.id = dino.id
+        `*/
+        
         return item
     },
     
