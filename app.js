@@ -1,6 +1,7 @@
 const app = {
     init(selectors) {
         this.max = 0
+        this.count = 0
         this.dinos = []
         this.list = document
             .querySelector(selectors.listSelector)
@@ -63,10 +64,6 @@ const app = {
             .setItem('dinos', JSON.stringify(this.dinos))
     },
 
-    /*favButton(){
-        this.parentElement.style.backgroundColor = '#FFCA28'
-    },*/
-
     renderListItem(dino) {
         const item = this.template.cloneNode(true)
         item.classList.remove('template')
@@ -115,7 +112,23 @@ const app = {
         item
             .querySelector('button.remove')
             .addEventListener('click', this.removeDino.bind(this))
+        item
+            .querySelector('button.fav')
+            .addEventListener('click', this.favDino.bind(this))
         return item
+    },
+
+    favDino(ev){
+        const listItem = ev.target.closest('.dino')
+        if (this.count === 0) {
+            listItem.style.backgroundColor = ''
+            this.count = 1
+        }
+        else {
+            listItem.style.backgroundColor = '#FFCA28'
+            this.count = 0
+        }
+
     },
 
     removeDino(ev) {
