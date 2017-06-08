@@ -7,6 +7,14 @@ const app = {
             .querySelector(selectors.formSelector)
             .addEventListener('submit', this.addDino.bind(this))
         
+        //makes it so you can just start typing without clicking on box
+        /*document
+            .querySelector(selectors.formSelector)
+            .dinoName
+            .focus()*/
+        //could also type in autofocus as an attribute to input for html5
+        //add attribute required to input so you can't submit an empty input
+        
     },
 
     addDino(ev) {
@@ -23,6 +31,8 @@ const app = {
         this.dinos.push(dino)
 
         ++ this.max
+        //this resets the input box after you click enter
+        ev.target.reset()
     },
 
     favButton(){
