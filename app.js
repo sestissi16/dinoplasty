@@ -5,7 +5,7 @@ const app = {
         this.list = document
             .querySelector(selectors.listSelector)
         this.template = document
-            .querySelector(selectores.templateSelector)
+            .querySelector(selectors.templateSelector)
         document
             .querySelector(selectors.formSelector)
             .addEventListener('submit', this.addDino.bind(this))
