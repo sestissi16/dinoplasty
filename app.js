@@ -2,7 +2,10 @@ const app = {
     init(selectors) {
         this.max = 0
         this.dinos = []
-        this.list = document.querySelector(selectors.listSelector)
+        this.list = document
+            .querySelector(selectors.listSelector)
+        this.template = document
+            .querySelector(selectores.templateSelector)
         document
             .querySelector(selectors.formSelector)
             .addEventListener('submit', this.addDino.bind(this))
@@ -112,4 +115,5 @@ const app = {
 app.init({
     formSelector: '#dino-form',
     listSelector: '#dino-list',
+    templateSelector: '.dino.template',
 })
