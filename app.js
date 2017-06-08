@@ -89,8 +89,15 @@ const app = {
                 </button>
             </div>
         `*/
-        
+        item
+            .querySelector('button.remove')
+            .addEventListener('click', this.removeDino)
         return item
+    },
+
+    removeDino(ev) {
+        const listItem = ev.target.closest('.dino')
+        listItem.remove()
     },
     
     move() {
