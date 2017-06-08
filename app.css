@@ -1,0 +1,12 @@
+h1 {
+    font-family: Impact, serif;
+}
+h1 span {
+    color: red;
+}
+section div div ul > li {
+    display:inline-block;
+}
+li:nth-of-type(even){
+    background-color: forestgreen;
+}
