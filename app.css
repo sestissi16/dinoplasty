@@ -4,10 +4,21 @@ h1 {
 h1 span {
     color: red;
 }
-section div div ul > li {
+li:nth-of-type(odd) {
     display:inline-block;
+    padding: 10px;
+    width:50%;
+    border:2px solid #663300;
+    background-color: #996600;
+    color:white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 li:nth-of-type(even){
-    background-color: forestgreen;
+    padding: 10px;
+    background-color: #558B2F;
+    width:50%;
+    border:2px solid #33691E;
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }

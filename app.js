@@ -71,7 +71,7 @@ const app = {
     },
     
     move() {
-        debugger
+        //debugger
         const ul = document.getElementById('dino-list')
         const items = ul.getElementsByTagName('li')
 
