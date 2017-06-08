@@ -34,10 +34,16 @@ const app = {
 
         //add things to the beginning of the array instead of end
         this.dinos.unshift(dino)
+        this.save()
 
         ++ this.max
         //this resets the input box after you click enter
         ev.target.reset()
+    },
+
+    save(){
+        localStorage
+            .setItem('dinos', JSON.stringify(this.dinos))
     },
 
     /*favButton(){
@@ -103,10 +109,11 @@ const app = {
             const currentId = this.dinos[i].id.toString()
             if(listItem.dataset.id === currentId){
                 this.dinos.splice(i, 1)
+                this.save()
                 break
             }
         }
-
+        
         
     },
     
