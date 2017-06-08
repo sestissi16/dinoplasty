@@ -8,7 +8,7 @@ const app = {
             .querySelector(selectors.templateSelector)
         document
             .querySelector(selectors.formSelector)
-            .addEventListener('submit', this.addDino.bind(this))
+            .addEventListener('submit', this.addDinoFromForm.bind(this))
         
         //makes it so you can just start typing without clicking on box
         /*document
@@ -17,17 +17,36 @@ const app = {
             .focus()*/
         //could also type in autofocus as an attribute to input for html5
         //add attribute required to input so you can't submit an empty input
-        
+        this.load()
     },
 
-    addDino(ev) {
+    load(){
+        //load the JSON from localstorage
+        const dinoJSON = localStorage.getItem('dinos')
+
+        //convert the JSON back into an array
+        const dinoArray = JSON.parse(dinoJSON)
+
+        //set this.dinos with the dinos from that array
+        if(dinoArray){
+            dinoArray
+                .reverse()
+                .map(this.addDino.bind(this))
+        }
+    },
+
+    addDinoFromForm(ev) {
         ev.preventDefault()
 
         const dino = {
             id: this.max + 1, 
             name: ev.target.dinoName.value,
         }
-
+        this.addDino(dino)
+        //this resets the input box after you click enter
+        ev.target.reset()
+    },
+    addDino(dino){
         const listItem = this.renderListItem(dino)
         //this.list.appendChild(listItem)
         this.list.insertBefore(listItem, this.list.firstChild)
@@ -37,8 +56,6 @@ const app = {
         this.save()
 
         ++ this.max
-        //this resets the input box after you click enter
-        ev.target.reset()
     },
 
     save(){
