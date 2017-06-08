@@ -26,7 +26,8 @@ const app = {
         }
 
         const listItem = this.renderListItem(dino)
-        this.list.appendChild(listItem)
+        //this.list.appendChild(listItem)
+        this.list.insertBefore(listItem, this.list.firstChild)
 
         this.dinos.push(dino)
 
@@ -35,9 +36,9 @@ const app = {
         ev.target.reset()
     },
 
-    favButton(){
+    /*favButton(){
         this.parentElement.style.backgroundColor = '#FFCA28'
-    },
+    },*/
 
     renderListItem(dino) {
         const item = document.createElement('li')
