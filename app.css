@@ -29,3 +29,6 @@ li:nth-of-type(even){
 .actions{
     float: right;
 }
+.dino{
+    clear: both;
+}
