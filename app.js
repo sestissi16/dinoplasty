@@ -72,50 +72,44 @@ const app = {
         item
             .querySelector('.dino-name')
             .textContent = dino.name
-        //commented out to be able to follow along with class
-        /*const item = document.createElement('li')
-        item.textContent = dino.name
-        item.innerHTML += `
-            <div class="button-group">
-                <button
-                    id="favBtn"
-                    class="warning button"
-                    onclick="this.parentElement.parentElement.style.backgroundColor = '#FFCA28'"
-                    ondblclick="this.parentElement.parentElement.style.backgroundColor = ''" 
-                >
-                    Favorite
-                </button>
-                <button
-                    id="delteBtn" 
-                    class="alert button"
-                    onclick="this.parentElement.parentElement.remove()"
-                >
-                    Delete
-                </button>
-                <button
-                    id="upBtn"
-                    class="button"
-                    onclick="app.move()"
-
-                >
-                    Up
-                </button>
-                <button
-                    id="downBtn"
-                    class="button"
-                    onclick="app.move()"
-                >
-                    Down
-                </button>
-            </div>
-        `*/
+        
         item
             .querySelector('button.remove')
             .addEventListener('click', this.removeDino.bind(this))
         item
             .querySelector('button.fav')
             .addEventListener('click', this.favDino.bind(this))
+        item
+            .querySelector('button.up')
+            .addEventListener('click', this.moveUp.bind(this))
+        item
+            .querySelector('button.down')
+            .addEventListener('click', this.moveDown.bind(this))
         return item
+    },
+
+    moveUp(ev){
+        const currentElement = ev.target.parentElement.parentElement
+        const itemElement = currentElement.previousSibling
+        const listElement = 
+        console.log(itemElement)
+        //if (itemElement.length){
+        //    const elementToMove = currentElement.detach
+        //    itemElement.before(elementToMove)
+        //}
+
+
+    },
+
+    moveDown(ev){
+        const currentElement = ev.target.parentElement.parentElement
+        const itemElement = currentElement.nextSibling
+        console.log(itemElement)
+        //if (itemElement.length){
+        //    const elementToMove = currentElement.detach
+        //    itemElement.after(elementToMove)
+        //}
+
     },
 
     favDino(ev){
@@ -143,32 +137,10 @@ const app = {
                 break
             }
         }
-        
-        
-    },
-    
-    move() {
-        //debugger
-        const ul = document.getElementById('dino-list')
-        const items = ul.getElementsByTagName('li')
-
-        this.counter = 0
-        this.previousItem = null
-        this.moveNextItemUp = false
-
-        for (let i = 0; i<items.length; i++){
-            if(this.id === 'downBtn'){
-                this.moveNextItemUp = true
-            }
-            else if ((this.id === 'upBtn') || (this.moveNextItemUp === true)){
-                items[i].parentNode.insertBefore(item[i], items[i-1])
-                break
-            }
-            this.previousItem = items[i]
-            this.counter += 1
+        for(let i = 0; i < this.dinos.length; i++){
+            this.dinos[i].id = this.dinos.length - i
         }
-
-
+        this.save()
     },
     
 
