@@ -42,7 +42,9 @@ const app = {
         const dino = {
             id: this.max + 1, 
             name: ev.target.dinoName.value,
+            eats: ev.target.eatingHabits.value,
         }
+        console.log(ev.target)
         this.addDino(dino)
         //this resets the input box after you click enter
         ev.target.reset()
@@ -71,7 +73,7 @@ const app = {
         
         item
             .querySelector('.dino-name')
-            .textContent = dino.name
+            .textContent = dino.name + ', ' + dino.eats
         
         item
             .querySelector('button.remove')
