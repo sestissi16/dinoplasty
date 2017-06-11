@@ -41,8 +41,7 @@ const app = {
 
         const dino = {
             id: this.max + 1, 
-            name: ev.target.dinoName.value,
-            eats: ev.target.eatingHabits.value,
+            name: ev.target.dinoName.value + ', ' + ev.target.eatingHabits.value,
         }
         console.log(ev.target)
         this.addDino(dino)
@@ -51,8 +50,6 @@ const app = {
     },
     addDino(dino){
         const listItem = this.renderListItem(dino)
-        //make list item editable
-        listItem.contentEditable = "true"
         //this.list.appendChild(listItem)
         this.list.insertBefore(listItem, this.list.firstChild)
 
@@ -72,11 +69,11 @@ const app = {
         const item = this.template.cloneNode(true)
         item.classList.remove('template')
         item.dataset.id = dino.id
+        item.contentEditable = 'true'
         
         item
             .querySelector('.dino-name')
-            .textContent = dino.name + ', ' + dino.eats
-        
+            .textContent = dino.name
         item
             .querySelector('button.remove')
             .addEventListener('click', this.removeDino.bind(this))
@@ -89,30 +86,37 @@ const app = {
         item
             .querySelector('button.down')
             .addEventListener('click', this.moveDown.bind(this))
+        item
+            .querySelector('button.save')
+            .addEventListener('click', this.saveText.bind(this))
         return item
+    },
+
+    saveText(ev){
+        // const listItem = ev.target.closest('.dino')
+        // listItem.textContent = ev.target.parentElement.parentElement.textContent
+        // console.log(ev.target.closest('.dino-name'))
+        // for(let i = 0; i < this.dinos.length; i++){
+        //     const currentId = this.dinos[i].id.toString()
+        //     if (listItem.dataset.id === currentId){
+        //         this.dinos.splice(i, 1, listItem)
+        //     }
+        // }
     },
 
     moveUp(ev){
         const currentElement = ev.target.parentElement.parentElement
         const itemElement = currentElement.previousSibling
-        const listElement = 
-        console.log(itemElement)
-        //if (itemElement.length){
-        //    const elementToMove = currentElement.detach
-        //    itemElement.before(elementToMove)
-        //}
-
+        const listElement = ev.target.closest('.no-bullet')
+        listElement.insertBefore(currentElement, itemElement)
 
     },
 
     moveDown(ev){
         const currentElement = ev.target.parentElement.parentElement
         const itemElement = currentElement.nextSibling
-        console.log(itemElement)
-        //if (itemElement.length){
-        //    const elementToMove = currentElement.detach
-        //    itemElement.after(elementToMove)
-        //}
+        const listElement = ev.target.closest('.no-bullet')
+        listElement.insertBefore(itemElement, currentElement)
 
     },
 

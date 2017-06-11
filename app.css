@@ -7,8 +7,9 @@ h1 span {
 li:nth-of-type(odd) {
     padding: 10px;
     width:100%;
-    height: 63px;
+    height: 80px;
     border:2px solid #663300;
+    border-radius: 10px;
     background-color: #996600;
     color:white;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
@@ -18,8 +19,9 @@ li:nth-of-type(even){
     padding: 10px;
     background-color: #558B2F;
     width:100%;
-    height: 63px;
+    height: 80px;
     border:2px solid #33691E;
+    border-radius: 10px;
     color: white;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
@@ -31,4 +33,7 @@ li:nth-of-type(even){
 }
 .dino{
     clear: both;
+}
+body{
+    background-image: url("http://1.bp.blogspot.com/-9ozVc8Z6tBA/Ve_P3KyMu0I/AAAAAAAAQMo/GwDhlwdIywU/s1600/dinosaurs-wallpaper-4%25281%2529.jpg");
 }
