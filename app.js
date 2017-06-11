@@ -51,6 +51,8 @@ const app = {
     },
     addDino(dino){
         const listItem = this.renderListItem(dino)
+        //make list item editable
+        listItem.contentEditable = "true"
         //this.list.appendChild(listItem)
         this.list.insertBefore(listItem, this.list.firstChild)
 
