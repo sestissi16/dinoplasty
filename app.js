@@ -67,6 +67,11 @@ const app = {
         //add things to the beginning of the array instead of end
         this.dinos.unshift(dino)
         this.save()
+
+        //this below fixes the id problem without changing the id
+        // if(dino.id > this.max){
+        //     this.max = dino.id
+        // }
         ++ this.max
     },
 
