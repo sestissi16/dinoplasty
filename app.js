@@ -1,7 +1,7 @@
 const app = {
     init(selectors) {
         this.max = 0
-        this.count = 0
+        // this.count = 0
         this.dinos = []
         this.list = document
             .querySelector(selectors.listSelector)
@@ -56,6 +56,14 @@ const app = {
         //add things to the beginning of the array instead of end
         this.dinos.unshift(dino)
         this.save()
+        // if(listItem.nextSibling === listItem.template){
+        //     const disableAtt = document.createAttribute('disabled')
+        //     listItem.querySelector('.down').setAttributeNode(disableAtt)
+        // }
+        // else if (listItem.previousSibling === null){
+        //     const disableAtt = document.createAttribute('disabled')
+        //     listItem.querySelector('.up').setAttributeNode(disableAtt)
+        // }
 
         ++ this.max
     },
@@ -71,6 +79,7 @@ const app = {
         item.dataset.id = dino.id
         item.contentEditable = 'true'
         
+        this.count = 0
         item
             .querySelector('.dino-name')
             .textContent = dino.name
@@ -122,7 +131,14 @@ const app = {
 
     favDino(ev){
         const listItem = ev.target.closest('.dino')
-        if (this.count === 0) {
+        if (this.count === 0 && listItem.style.backgroundColor === '' ){
+            listItem.style.backgroundColor = '#FFCA28'
+        }
+        else if (this.count === 1 && listItem.style.backgroundColor === '#FFCA28'){
+            listItem.style.backgroundColor = ''
+            console.log(listItem.style.backgroundColor.value)
+        }
+        else if (this.count === 0) {
             listItem.style.backgroundColor = ''
             this.count = 1
         }
