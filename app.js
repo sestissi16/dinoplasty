@@ -59,8 +59,11 @@ const app = {
         const srcAtt = document.createAttribute('src')
         srcAtt.value = `${picChoice}`
         document.getElementById('picture').setAttributeNode(srcAtt)
-        
-        
+        //makes fav persist and come back
+        if(dino.fav){
+            listItem.classList.add('favColor')
+        }
+
         //add things to the beginning of the array instead of end
         this.dinos.unshift(dino)
         this.save()
@@ -101,10 +104,10 @@ const app = {
             .addEventListener('click', this.favDino.bind(this, dino))
         item
             .querySelector('button.up')
-            .addEventListener('click', this.moveUp.bind(this))
+            .addEventListener('click', this.moveUp.bind(this, dino))
         item
             .querySelector('button.down')
-            .addEventListener('click', this.moveDown.bind(this))
+            .addEventListener('click', this.moveDown.bind(this, dino))
         item
             .querySelector('button.save')
             .addEventListener('click', this.saveText.bind(this))
@@ -137,11 +140,25 @@ const app = {
         }
     },
 
-    moveUp(ev){
-        const currentElement = ev.target.parentElement.parentElement
-        const itemElement = currentElement.previousSibling
-        const listElement = ev.target.closest('.no-bullet')
-        listElement.insertBefore(currentElement, itemElement)
+    moveUp(dino, ev){
+        const listItem = ev.target.closest('.dino')
+
+        const index = this.dinos.findIndex((currentDino, i)=>{
+            return currentDino.id === dino.id
+        })
+        if(index > 0){
+            this.list.insertBefore(listItem, listItem.previousElementSibling)
+            const previousDino = this.dinos[index-1]
+            this.dinos[index-1] = dino
+            this.dinos[index] = previousDino
+            this.save()
+        }
+
+        
+        // const currentElement = ev.target.parentElement.parentElement
+        // const itemElement = currentElement.previousSibling
+        // const listElement = ev.target.closest('.no-bullet')
+        // listElement.insertBefore(currentElement, itemElement)
     },
 
     moveDown(ev){
@@ -163,16 +180,8 @@ const app = {
         else{
             listItem.classList.remove('favColor')
         }
-        
+        //saves it to local storage
         this.save()
-        // if(listItem.classList.contains('favColor')){
-        //     listItem.classList.remove('favColor')
-        // }
-        // else{
-        //     listItem.classList.add('favColor')
-        //     dino.fav = true
-        //     this.save
-        // }
     },
 
     removeDino(ev) {
