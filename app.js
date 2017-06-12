@@ -1,5 +1,5 @@
-const app = {
-    init(selectors) {
+class App {
+    constructor(selectors) {
         this.max = 0
         // this.count = 0
         this.dinos = []
@@ -19,7 +19,7 @@ const app = {
         //could also type in autofocus as an attribute to input for html5
         //add attribute required to input so you can't submit an empty input
         this.load()
-    },
+    }
 
     load(){
         //load the JSON from localstorage
@@ -34,7 +34,7 @@ const app = {
                 .reverse()
                 .map(this.addDino.bind(this))
         }
-    },
+    }
 
     addDinoFromForm(ev) {
         ev.preventDefault()
@@ -48,7 +48,7 @@ const app = {
         this.addDino(dino)
         //this resets the input box after you click enter
         ev.target.reset()
-    },
+    }
     addDino(dino){
         const listItem = this.renderListItem(dino)
         //this.list.appendChild(listItem)
@@ -73,12 +73,12 @@ const app = {
         //     this.max = dino.id
         // }
         ++ this.max
-    },
+    }
 
     save(){
         localStorage
             .setItem('dinos', JSON.stringify(this.dinos))
-    },
+    }
 
     renderListItem(dino) {
         const item = this.template.cloneNode(true)
@@ -122,13 +122,13 @@ const app = {
             .addEventListener('click', this.editDino.bind(this, dino))
         
         return item
-    },
+    }
 
     saveOnEnter(dino, ev){
         if (ev.key === 'Enter'){
             this.editDino(dino, ev)
         }
-    },
+    }
 
     editDino(dino, ev){
         const listItem = ev.target.closest('.dino')
@@ -155,7 +155,7 @@ const app = {
             btn.classList.add('success')
         }
         
-    },
+    }
 
     // saveText(ev){
     //     const listItem = ev.target.closest('.dino')
@@ -180,7 +180,7 @@ const app = {
     //             break
     //         }
     //     }
-    // },
+    // }
 
     moveUp(dino, ev){
         const listItem = ev.target.closest('.dino')
@@ -195,7 +195,7 @@ const app = {
             this.dinos[index] = previousDino
             this.save()
         }
-    },
+    }
 
     moveDown(dino, ev){
         const listItem = ev.target.closest('.dino')
@@ -212,7 +212,7 @@ const app = {
             this.dinos[index] = nextDino
             this.save()
         }
-    },
+    }
 
     favDino(dino, ev){
         const listItem = ev.target.closest('.dino')
@@ -225,7 +225,7 @@ const app = {
         }
         //saves it to local storage
         this.save()
-    },
+    }
 
     removeDino(ev) {
         const listItem = ev.target.closest('.dino')
@@ -244,13 +244,13 @@ const app = {
         }
         this.max = this.dinos.length 
         this.save()
-    },
-    
-
+    }
 }
 
-app.init({
+const app = new App({
     formSelector: '#dino-form',
     listSelector: '#dino-list',
     templateSelector: '.dino.template',
 })
+
+
