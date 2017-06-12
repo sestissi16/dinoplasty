@@ -78,7 +78,7 @@ img{
 }
 .dino:first-child .up,
 .dino:last-child .down{
-    background-color: #ddd;
-    color: #eee;
+    background-color: #d0efe7;
+    color: #a0b2ad;
     cursor: not-allowed;
 }

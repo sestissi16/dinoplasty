@@ -67,18 +67,6 @@ const app = {
         //add things to the beginning of the array instead of end
         this.dinos.unshift(dino)
         this.save()
-        //console.log(dino)
-        // if(item.nextSibling.nextSibling.classList.contains('template')){
-        //     //console.log(listItem.nextSibling)
-        //     const disableAtt = document.createAttribute('disabled')
-        //     listItem.querySelector('.down').setAttributeNode(disableAtt)
-        // }
-        // else if (item === this.list.childNodes[1]){
-        //     console.log(listItem)
-        //     console.log(this.list.childNodes[1])
-        //     const disableAtt = document.createAttribute('disabled')
-        //     listItem.querySelector('.up').setAttributeNode(disableAtt)
-        // }
         ++ this.max
     },
 
@@ -91,7 +79,7 @@ const app = {
         const item = this.template.cloneNode(true)
         item.classList.remove('template')
         item.dataset.id = dino.id
-        item.childNodes[3].contentEditable = 'true'
+        //item.childNodes[3].contentEditable = 'true'
 
         item
             .querySelector('.dino-name')
@@ -111,8 +99,27 @@ const app = {
         item
             .querySelector('button.save')
             .addEventListener('click', this.saveText.bind(this))
+        item
+            .querySelector('button.edit')
+            .addEventListener('click', this.editDino.bind(this, dino))
         
         return item
+    },
+
+    editDino(dino, ev){
+        const listItem = ev.target.closest('.dino')
+        const nameField = listItem.querySelector('.dino-name')
+        if(nameField.isContentEditable){
+            //make it no longer editable
+            nameField.contentEditable = false
+            //save changes
+            dino.name = nameField.textContent
+            this.save()
+        }
+        else{
+            nameField.contentEditable = true
+        }
+        
     },
 
     saveText(ev){
