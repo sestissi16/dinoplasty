@@ -2,7 +2,7 @@ h1 {
     font-family: Impact, serif;
 }
 h1 span {
-    color: red;
+    color: #239916;
 }
 li:nth-of-type(odd) {
     padding: 10px;
