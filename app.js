@@ -43,7 +43,7 @@ const app = {
             id: this.max + 1, 
             name: ev.target.dinoName.value + ', ' + ev.target.eatingHabits.value,
         }
-        console.log(ev.target)
+        //console.log(ev.target)
         this.addDino(dino)
         //this resets the input box after you click enter
         ev.target.reset()
@@ -78,7 +78,7 @@ const app = {
         item.classList.remove('template')
         item.dataset.id = dino.id
         item.contentEditable = 'true'
-        
+
         this.count = 0
         item
             .querySelector('.dino-name')
@@ -102,15 +102,28 @@ const app = {
     },
 
     saveText(ev){
-        // const listItem = ev.target.closest('.dino')
-        // listItem.textContent = ev.target.parentElement.parentElement.textContent
-        // console.log(ev.target.closest('.dino-name'))
-        // for(let i = 0; i < this.dinos.length; i++){
-        //     const currentId = this.dinos[i].id.toString()
-        //     if (listItem.dataset.id === currentId){
-        //         this.dinos.splice(i, 1, listItem)
-        //     }
-        // }
+        const listItem = ev.target.closest('.dino')
+        //listItem.textContent = ev.target.parentElement.parentElement.textContent
+        let textItem = null
+        for(let i = 0; i < listItem.childNodes.length; i++){
+            if(listItem.childNodes[i].className === 'dino-name' ){
+                textItem = listItem.childNodes[i]
+                break
+            }
+        }
+        console.log(textItem)
+        for(let i = 0; i < this.dinos.length; i++){
+            const currentId = this.dinos[i].id.toString()
+            if (listItem.dataset.id === currentId){
+                const dino = {
+                    id:this.dinos[i-1].id,
+                    name: textItem
+                }
+                this.dinos.splice(i, 1, dino)
+                //console.log(this.dinos)
+                this.save()
+            }
+        }
     },
 
     moveUp(ev){
@@ -136,7 +149,6 @@ const app = {
         }
         else if (this.count === 1 && listItem.style.backgroundColor === '#FFCA28'){
             listItem.style.backgroundColor = ''
-            console.log(listItem.style.backgroundColor.value)
         }
         else if (this.count === 0) {
             listItem.style.backgroundColor = ''
@@ -164,6 +176,7 @@ const app = {
         for(let i = 0; i < this.dinos.length; i++){
             this.dinos[i].id = this.dinos.length - i
         }
+        this.max = this.dinos.length 
         this.save()
     },
     
