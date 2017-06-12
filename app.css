@@ -3,6 +3,9 @@ h1 {
 }
 h1 span {
     color: #239916;
+    background-color: rgba(234, 247, 234, 0.5);
+    border-radius: 10px;
+    padding: 0px 4px 0px 3px
 }
 li:nth-of-type(odd) {
     padding: 10px;
@@ -12,6 +15,7 @@ li:nth-of-type(odd) {
     border-radius: 10px;
     background-color: rgba(153, 102, 0, 0.6);
     color:white;
+    font-family: Arial Black;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
@@ -23,6 +27,7 @@ li:nth-of-type(even){
     border:2px solid rgba(51, 105, 30, 0.7);
     border-radius: 10px;
     color: white;
+    font-family: Arial Black;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 .template {
@@ -37,6 +42,17 @@ li:nth-of-type(even){
 body{
     background-image: url("http://1.bp.blogspot.com/-9ozVc8Z6tBA/Ve_P3KyMu0I/AAAAAAAAQMo/GwDhlwdIywU/s1600/dinosaurs-wallpaper-4%25281%2529.jpg");
 }
-ul li:hover{
-
+ul li:nth-of-type(even):hover{
+    background-color: rgba(148, 214, 141, 0.6);
+    border: 1px solid rgba(114, 160, 109, 0.7);
+    box-shadow: 5px 5px 3px rgba(52, 76, 49, 0.7);
+}
+ul li:nth-of-type(odd):hover{
+    background-color: rgba(224, 177, 83, 0.6);
+    border: 1px solid rgba(175, 137, 61, 0.7);
+    box-shadow: 5px 5px 3px rgba(51, 37, 11, 0.7);
+}
+.favColor{
+    background-color: rgba(252, 226, 95, 0.6) !important;
+    border:2px solid rgba(204, 178, 51, 0.7) !important;
 }

@@ -145,21 +145,12 @@ const app = {
 
     favDino(ev){
         const listItem = ev.target.closest('.dino')
-        if (this.count === 0 && listItem.style.backgroundColor === '' ){
-            listItem.style.backgroundColor = '#FFCA28'
+        if(listItem.classList.contains('favColor')){
+            listItem.classList.remove('favColor')
         }
-        else if (this.count === 1 && listItem.style.backgroundColor === '#FFCA28'){
-            listItem.style.backgroundColor = ''
+        else{
+            listItem.classList.add('favColor')
         }
-        else if (this.count === 0) {
-            listItem.style.backgroundColor = ''
-            this.count = 1
-        }
-        else {
-            listItem.style.backgroundColor = '#FFCA28'
-            this.count = 0
-        }
-
     },
 
     removeDino(ev) {
