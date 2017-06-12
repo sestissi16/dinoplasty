@@ -96,9 +96,9 @@ const app = {
         item
             .querySelector('button.down')
             .addEventListener('click', this.moveDown.bind(this, dino))
-        item
-            .querySelector('button.save')
-            .addEventListener('click', this.saveText.bind(this))
+        // item
+        //     .querySelector('button.save')
+        //     .addEventListener('click', this.saveText.bind(this))
         item
             .querySelector('button.edit')
             .addEventListener('click', this.editDino.bind(this, dino))
@@ -109,43 +109,54 @@ const app = {
     editDino(dino, ev){
         const listItem = ev.target.closest('.dino')
         const nameField = listItem.querySelector('.dino-name')
+
+        const btn = ev.currentTarget
+        const icon = btn.querySelector('i.fa')
+
         if(nameField.isContentEditable){
             //make it no longer editable
             nameField.contentEditable = false
+            icon.classList.remove('fa-floppy-o')
+            icon.classList.add('fa-pencil')
+            btn.classList.remove('success')
             //save changes
             dino.name = nameField.textContent
             this.save()
         }
         else{
             nameField.contentEditable = true
+            nameField.focus()
+            icon.classList.remove('fa-pencil')
+            icon.classList.add('fa-floppy-o')
+            btn.classList.add('success')
         }
         
     },
 
-    saveText(ev){
-        const listItem = ev.target.closest('.dino')
-        let textItem = null
-        for(let i = 0; i < listItem.childNodes.length; i++){
-            if(listItem.childNodes[i].className === 'dino-name' ){
-                console.log(listItem.childNodes[i])
-                textItem = listItem.childNodes[i].textContent.toString()
-                break
-            }
-        }
-        for(let i = 0; i < this.dinos.length; i++){
-            const currentId = this.dinos[i].id.toString()
-            const dino = {
-                    id: this.dinos[i].id,
-                    name: textItem
-                }
-            if (listItem.dataset.id === currentId){
-                this.dinos.splice(i, 1, dino)
+    // saveText(ev){
+    //     const listItem = ev.target.closest('.dino')
+    //     let textItem = null
+    //     for(let i = 0; i < listItem.childNodes.length; i++){
+    //         if(listItem.childNodes[i].className === 'dino-name' ){
+    //             console.log(listItem.childNodes[i])
+    //             textItem = listItem.childNodes[i].textContent.toString()
+    //             break
+    //         }
+    //     }
+    //     for(let i = 0; i < this.dinos.length; i++){
+    //         const currentId = this.dinos[i].id.toString()
+    //         const dino = {
+    //                 id: this.dinos[i].id,
+    //                 name: textItem
+    //             }
+    //         if (listItem.dataset.id === currentId){
+    //             this.dinos.splice(i, 1, dino)
 
-                this.save()
-                break
-            }
-        }
-    },
+    //             this.save()
+    //             break
+    //         }
+    //     }
+    // },
 
     moveUp(dino, ev){
         const listItem = ev.target.closest('.dino')
