@@ -78,8 +78,6 @@ const app = {
         item.classList.remove('template')
         item.dataset.id = dino.id
         item.childNodes[1].contentEditable = 'true'
-        //item.contentEditable = 'true'
-        //console.log(item.className)
 
         this.count = 0
         item

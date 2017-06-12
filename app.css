@@ -8,19 +8,19 @@ li:nth-of-type(odd) {
     padding: 10px;
     width:100%;
     height: 80px;
-    border:2px solid #663300;
+    border:2px solid rgba(102, 51, 0, 0.7);
     border-radius: 10px;
-    background-color: #996600;
+    background-color: rgba(153, 102, 0, 0.6);
     color:white;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 li:nth-of-type(even){
     padding: 10px;
-    background-color: #558B2F;
+    background-color: rgba(85, 139, 47, 0.6);
     width:100%;
     height: 80px;
-    border:2px solid #33691E;
+    border:2px solid rgba(51, 105, 30, 0.7);
     border-radius: 10px;
     color: white;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
@@ -36,4 +36,7 @@ li:nth-of-type(even){
 }
 body{
     background-image: url("http://1.bp.blogspot.com/-9ozVc8Z6tBA/Ve_P3KyMu0I/AAAAAAAAQMo/GwDhlwdIywU/s1600/dinosaurs-wallpaper-4%25281%2529.jpg");
+}
+ul li:hover{
+
 }
