@@ -76,3 +76,9 @@ img{
     border-radius: 100%;
     border:2px solid #685f4b;
 }
+.dino:first-child .up,
+.dino:last-child .down{
+    background-color: #ddd;
+    color: #eee;
+    cursor: not-allowed;
+}
