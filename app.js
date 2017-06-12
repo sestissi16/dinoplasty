@@ -87,7 +87,7 @@ const app = {
         const item = this.template.cloneNode(true)
         item.classList.remove('template')
         item.dataset.id = dino.id
-        item.childNodes[1].contentEditable = 'true'
+        item.childNodes[3].contentEditable = 'true'
 
         item
             .querySelector('.dino-name')
@@ -116,6 +116,7 @@ const app = {
         let textItem = null
         for(let i = 0; i < listItem.childNodes.length; i++){
             if(listItem.childNodes[i].className === 'dino-name' ){
+                console.log(listItem.childNodes[i])
                 textItem = listItem.childNodes[i].textContent.toString()
                 break
             }
