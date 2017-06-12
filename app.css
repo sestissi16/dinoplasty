@@ -59,7 +59,7 @@ ul li:nth-of-type(odd):hover{
 img{
     float: left;
     height: 60px;
-    width:80px;
+    width:85px;
     border-radius: 100%;
     border:2px solid #685f4b;
 }
