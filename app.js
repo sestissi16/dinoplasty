@@ -81,9 +81,18 @@ const app = {
         item.dataset.id = dino.id
         //item.childNodes[3].contentEditable = 'true'
 
+
+        // if(dino.fav){
+        //     item.classList.add('favColor')
+        // }
         item
             .querySelector('.dino-name')
             .textContent = dino.name
+
+        item
+            .querySelector('.dino-name')
+            .addEventListener('keypress', this.saveOnEnter.bind(this, dino))
+        
         item
             .querySelector('button.remove')
             .addEventListener('click', this.removeDino.bind(this))
@@ -106,11 +115,17 @@ const app = {
         return item
     },
 
+    saveOnEnter(dino, ev){
+        if (ev.key === 'Enter'){
+            this.editDino(dino, ev)
+        }
+    },
+
     editDino(dino, ev){
         const listItem = ev.target.closest('.dino')
         const nameField = listItem.querySelector('.dino-name')
 
-        const btn = ev.currentTarget
+        const btn = listItem.querySelector('button.edit')
         const icon = btn.querySelector('i.fa')
 
         if(nameField.isContentEditable){
