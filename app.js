@@ -42,6 +42,7 @@ const app = {
         const dino = {
             id: this.max + 1, 
             name: ev.target.dinoName.value + ', ' + ev.target.eatingHabits.value,
+            fav: false
         }
         //console.log(ev.target)
         this.addDino(dino)
@@ -97,7 +98,7 @@ const app = {
             .addEventListener('click', this.removeDino.bind(this))
         item
             .querySelector('button.fav')
-            .addEventListener('click', this.favDino.bind(this))
+            .addEventListener('click', this.favDino.bind(this, dino))
         item
             .querySelector('button.up')
             .addEventListener('click', this.moveUp.bind(this))
@@ -153,14 +154,25 @@ const app = {
 
     },
 
-    favDino(ev){
+    favDino(dino, ev){
         const listItem = ev.target.closest('.dino')
-        if(listItem.classList.contains('favColor')){
-            listItem.classList.remove('favColor')
-        }
-        else{
+        dino.fav = !dino.fav
+        if(dino.fav){
             listItem.classList.add('favColor')
         }
+        else{
+            listItem.classList.remove('favColor')
+        }
+        
+        this.save()
+        // if(listItem.classList.contains('favColor')){
+        //     listItem.classList.remove('favColor')
+        // }
+        // else{
+        //     listItem.classList.add('favColor')
+        //     dino.fav = true
+        //     this.save
+        // }
     },
 
     removeDino(ev) {
