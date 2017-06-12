@@ -52,19 +52,29 @@ const app = {
         const listItem = this.renderListItem(dino)
         //this.list.appendChild(listItem)
         this.list.insertBefore(listItem, this.list.firstChild)
-
+        const choiceOfPic = ['cute-dino-1.jpg', 'cute-dino-2.jpg', 'cute-dino-3.jpg', 'cute-dino-4.jpg', 'cute-dino-5.jpg', 'cute-dino-6.jpg']
+        const randomNum = Math.floor(Math.random() * choiceOfPic.length)
+        const picChoice = choiceOfPic[randomNum]
+        const srcAtt = document.createAttribute('src')
+        srcAtt.value = `${picChoice}`
+        document.getElementById('picture').setAttributeNode(srcAtt)
+        
+        
         //add things to the beginning of the array instead of end
         this.dinos.unshift(dino)
         this.save()
-        // if(listItem.nextSibling === listItem.template){
+        //console.log(dino)
+        // if(item.nextSibling.nextSibling.classList.contains('template')){
+        //     //console.log(listItem.nextSibling)
         //     const disableAtt = document.createAttribute('disabled')
         //     listItem.querySelector('.down').setAttributeNode(disableAtt)
         // }
-        // else if (listItem.previousSibling === null){
+        // else if (item === this.list.childNodes[1]){
+        //     console.log(listItem)
+        //     console.log(this.list.childNodes[1])
         //     const disableAtt = document.createAttribute('disabled')
         //     listItem.querySelector('.up').setAttributeNode(disableAtt)
         // }
-        //console.log(dino)
         ++ this.max
     },
 
@@ -97,12 +107,12 @@ const app = {
         item
             .querySelector('button.save')
             .addEventListener('click', this.saveText.bind(this))
+        
         return item
     },
 
     saveText(ev){
         const listItem = ev.target.closest('.dino')
-        //listItem.textContent = ev.target.parentElement.parentElement.textContent
         let textItem = null
         for(let i = 0; i < listItem.childNodes.length; i++){
             if(listItem.childNodes[i].className === 'dino-name' ){
@@ -110,18 +120,15 @@ const app = {
                 break
             }
         }
-        //console.log(textItem)
         for(let i = 0; i < this.dinos.length; i++){
             const currentId = this.dinos[i].id.toString()
             const dino = {
                     id: this.dinos[i].id,
                     name: textItem
                 }
-            //console.log(dino)
             if (listItem.dataset.id === currentId){
                 this.dinos.splice(i, 1, dino)
 
-                //console.log(this.dinos)
                 this.save()
                 break
             }
@@ -133,12 +140,13 @@ const app = {
         const itemElement = currentElement.previousSibling
         const listElement = ev.target.closest('.no-bullet')
         listElement.insertBefore(currentElement, itemElement)
-
     },
 
     moveDown(ev){
         const currentElement = ev.target.parentElement.parentElement
-        const itemElement = currentElement.nextSibling
+        //console.log(currentElement)
+        const itemElement = currentElement.nextSibling.nextSibling
+        //console.log(itemElement)
         const listElement = ev.target.closest('.no-bullet')
         listElement.insertBefore(itemElement, currentElement)
 

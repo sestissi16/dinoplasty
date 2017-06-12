@@ -3,7 +3,7 @@ h1 {
 }
 h1 span {
     color: #239916;
-    background-color: rgba(234, 247, 234, 0.5);
+    background-color: rgba(255, 212, 119, 0.3);
     border-radius: 10px;
     padding: 0px 4px 0px 3px
 }
@@ -55,4 +55,11 @@ ul li:nth-of-type(odd):hover{
 .favColor{
     background-color: rgba(252, 226, 95, 0.6) !important;
     border:2px solid rgba(204, 178, 51, 0.7) !important;
+}
+img{
+    float: left;
+    height: 60px;
+    width:80px;
+    border-radius: 100%;
+    border:2px solid #685f4b;
 }
