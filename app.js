@@ -153,22 +153,23 @@ const app = {
             this.dinos[index] = previousDino
             this.save()
         }
-
-        
-        // const currentElement = ev.target.parentElement.parentElement
-        // const itemElement = currentElement.previousSibling
-        // const listElement = ev.target.closest('.no-bullet')
-        // listElement.insertBefore(currentElement, itemElement)
     },
 
-    moveDown(ev){
-        const currentElement = ev.target.parentElement.parentElement
-        //console.log(currentElement)
-        const itemElement = currentElement.nextSibling.nextSibling
-        //console.log(itemElement)
-        const listElement = ev.target.closest('.no-bullet')
-        listElement.insertBefore(itemElement, currentElement)
+    moveDown(dino, ev){
+        const listItem = ev.target.closest('.dino')
 
+        const index = this.dinos.findIndex((currentDino, i)=>{
+            return currentDino.id === dino.id
+        })
+
+        if(index < this.dinos.length - 1){
+            this.list.insertBefore(listItem.nextElementSibling, listItem)
+
+            const nextDino = this.dinos[index + 1]
+            this.dinos[index+1] = dino
+            this.dinos[index] = nextDino
+            this.save()
+        }
     },
 
     favDino(dino, ev){
