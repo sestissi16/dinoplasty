@@ -64,7 +64,7 @@ const app = {
         //     const disableAtt = document.createAttribute('disabled')
         //     listItem.querySelector('.up').setAttributeNode(disableAtt)
         // }
-
+        //console.log(dino)
         ++ this.max
     },
 
@@ -79,7 +79,6 @@ const app = {
         item.dataset.id = dino.id
         item.childNodes[1].contentEditable = 'true'
 
-        this.count = 0
         item
             .querySelector('.dino-name')
             .textContent = dino.name
@@ -107,22 +106,24 @@ const app = {
         let textItem = null
         for(let i = 0; i < listItem.childNodes.length; i++){
             if(listItem.childNodes[i].className === 'dino-name' ){
-                textItem = listItem.childNodes[i]
+                textItem = listItem.childNodes[i].textContent.toString()
                 break
             }
         }
-        console.log(textItem)
+        //console.log(textItem)
         for(let i = 0; i < this.dinos.length; i++){
             const currentId = this.dinos[i].id.toString()
             const dino = {
                     id: this.dinos[i].id,
                     name: textItem
                 }
+            //console.log(dino)
             if (listItem.dataset.id === currentId){
                 this.dinos.splice(i, 1, dino)
 
-                console.log(this.dinos)
+                //console.log(this.dinos)
                 this.save()
+                break
             }
         }
     },
