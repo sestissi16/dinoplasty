@@ -77,7 +77,9 @@ const app = {
         const item = this.template.cloneNode(true)
         item.classList.remove('template')
         item.dataset.id = dino.id
-        item.contentEditable = 'true'
+        item.childNodes[1].contentEditable = 'true'
+        //item.contentEditable = 'true'
+        //console.log(item.className)
 
         this.count = 0
         item
@@ -114,13 +116,14 @@ const app = {
         console.log(textItem)
         for(let i = 0; i < this.dinos.length; i++){
             const currentId = this.dinos[i].id.toString()
-            if (listItem.dataset.id === currentId){
-                const dino = {
-                    id:this.dinos[i-1].id,
+            const dino = {
+                    id: this.dinos[i].id,
                     name: textItem
                 }
+            if (listItem.dataset.id === currentId){
                 this.dinos.splice(i, 1, dino)
-                //console.log(this.dinos)
+
+                console.log(this.dinos)
                 this.save()
             }
         }
