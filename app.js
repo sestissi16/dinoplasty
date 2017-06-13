@@ -3,6 +3,9 @@ class App {
         this.max = 0
         // this.count = 0
         this.dinos = []
+        this.carnivores = []
+        this.herbivores = []
+        this.omnivores = []
         this.list = document
             .querySelector(selectors.listSelector)
         this.template = document
@@ -10,14 +13,7 @@ class App {
         document
             .querySelector(selectors.formSelector)
             .addEventListener('submit', this.addDinoFromForm.bind(this))
-        
-        //makes it so you can just start typing without clicking on box
-        /*document
-            .querySelector(selectors.formSelector)
-            .dinoName
-            .focus()*/
-        //could also type in autofocus as an attribute to input for html5
-        //add attribute required to input so you can't submit an empty input
+
         this.load()
     }
 
@@ -41,8 +37,9 @@ class App {
 
         const dino = {
             id: this.max + 1, 
-            name: ev.target.dinoName.value + ', ' + ev.target.eatingHabits.value,
-            fav: false
+            name: ev.target.dinoName.value,
+            fav: false,
+            diet: ev.target.diet.value,
         }
         //console.log(ev.target)
         this.addDino(dino)
@@ -63,21 +60,38 @@ class App {
         if(dino.fav){
             listItem.classList.add('favColor')
         }
-
+        if(dino.diet === 'carnivore'){
+            this.carnivores.unshift(dino)
+        }
+        if(dino.diet === 'herbivore'){
+            this.herbivores.unshift(dino)
+        }
+        if(dino.diet === 'omnivore'){
+            this.omnivores.unshift(dino)
+        }
         //add things to the beginning of the array instead of end
         this.dinos.unshift(dino)
         this.save()
 
         //this below fixes the id problem without changing the id
-        // if(dino.id > this.max){
-        //     this.max = dino.id
-        // }
+        if(dino.id > this.max){
+            this.max = dino.id
+        }
         ++ this.max
     }
 
     save(){
         localStorage
             .setItem('dinos', JSON.stringify(this.dinos))
+        
+        localStorage
+            .setItem('carnivores', JSON.stringify(this.carnivores))
+
+        localStorage
+            .setItem('herbivores', JSON.stringify(this.herbivores))
+
+        localStorage
+            .setItem('omnivores', JSON.stringify(this.omnivores))
     }
 
     renderListItem(dino) {
@@ -90,6 +104,13 @@ class App {
         // if(dino.fav){
         //     item.classList.add('favColor')
         // }
+
+        if(dino.diet){
+            item
+                .querySelector('.dino-diet')
+                .textContent = dino.diet
+        }
+
         item
             .querySelector('.dino-name')
             .textContent = dino.name
@@ -100,6 +121,10 @@ class App {
 
         item
             .querySelector('.dino-name')
+            .addEventListener('keypress', this.saveOnEnter.bind(this, dino))
+
+        item
+            .querySelector('.dino-diet')
             .addEventListener('keypress', this.saveOnEnter.bind(this, dino))
         
         item
@@ -133,6 +158,7 @@ class App {
     editDino(dino, ev){
         const listItem = ev.target.closest('.dino')
         const nameField = listItem.querySelector('.dino-name')
+        const dietField = listItem.querySelector('.dino-diet')
 
         const btn = listItem.querySelector('button.edit')
         const icon = btn.querySelector('i.fa')
@@ -140,15 +166,18 @@ class App {
         if(nameField.isContentEditable){
             //make it no longer editable
             nameField.contentEditable = false
+            dietField.contentEditable = false
             icon.classList.remove('fa-floppy-o')
             icon.classList.add('fa-pencil')
             btn.classList.remove('success')
             //save changes
             dino.name = nameField.textContent
+            dino.diet = dietField.textContent
             this.save()
         }
         else{
             nameField.contentEditable = true
+            dietField.contentEditable = true
             nameField.focus()
             icon.classList.remove('fa-pencil')
             icon.classList.add('fa-floppy-o')
@@ -156,31 +185,6 @@ class App {
         }
         
     }
-
-    // saveText(ev){
-    //     const listItem = ev.target.closest('.dino')
-    //     let textItem = null
-    //     for(let i = 0; i < listItem.childNodes.length; i++){
-    //         if(listItem.childNodes[i].className === 'dino-name' ){
-    //             console.log(listItem.childNodes[i])
-    //             textItem = listItem.childNodes[i].textContent.toString()
-    //             break
-    //         }
-    //     }
-    //     for(let i = 0; i < this.dinos.length; i++){
-    //         const currentId = this.dinos[i].id.toString()
-    //         const dino = {
-    //                 id: this.dinos[i].id,
-    //                 name: textItem
-    //             }
-    //         if (listItem.dataset.id === currentId){
-    //             this.dinos.splice(i, 1, dino)
-
-    //             this.save()
-    //             break
-    //         }
-    //     }
-    // }
 
     moveUp(dino, ev){
         const listItem = ev.target.closest('.dino')
@@ -239,11 +243,11 @@ class App {
                 break
             }
         }
-        for(let i = 0; i < this.dinos.length; i++){
-            this.dinos[i].id = this.dinos.length - i
-        }
-        this.max = this.dinos.length 
-        this.save()
+        // for(let i = 0; i < this.dinos.length; i++){
+        //     this.dinos[i].id = this.dinos.length - i
+        // }
+        // this.max = this.dinos.length 
+        // this.save()
     }
 }
 

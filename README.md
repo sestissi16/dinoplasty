@@ -45,3 +45,8 @@ This is another paragraph.
 
 * Have a nice weekend!
 
+## Day 5 Homework
+
+Categorize stuff! Sparate dino by diet, or era, or whatever! Make a whole new thing with categories, like messages separated into channels! Use your tremendous creativity! Exclamation point!
+
+Or heck, just make separate lists based on the second imput field you added in the weekend homework!
