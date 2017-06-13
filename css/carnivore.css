@@ -1,0 +1,7 @@
+.favColor{
+    background-color: rgba(252, 226, 95, 0.6) !important;
+    border:2px solid rgba(204, 178, 51, 0.7) !important;
+}
+.template{
+    display: none !important;
+}

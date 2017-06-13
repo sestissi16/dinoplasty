@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/js/plugins/foundation.util.keyboard.js">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/js/plugins/foundation.util.motion.js">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/js/plugins/foundation.util.nest.js">
-        
+
     </head>
     <body>
         <div class="row">
@@ -24,23 +24,49 @@
         </div>
         <div class="row">
             <div class="medium-2 column">
-                <ul class="vertical menu" data-accordion-menu>
+                <!--<ul class="vertical menu" data-accordion-menu>
                     <li>
                         <a href="index.html">Dinosaurs</a>
                         <ul class="menu vertical nested">
                             <li>
-                                <a href="carnivore-list.html">Carnivores</a>
+                                <a href="carnivore.html">Carnivores</a>
                             </li>
                             <li>
-                                <a href="herbivore-list.html">Herbivores</a>
+                                <a href="herbivore.html">Herbivores</a>
                             </li>
                             <li>
-                                <a href="omnivore-list.html">Omnivores</a>
+                                <a href="omnivore.html">Omnivores</a>
                             </li>
                         </ul>
                     </li>
                     
-                </ul>
+                </ul>-->
+                <div class="title-bar" data-responsive-toggle="example-menu" data-hide-for="medium">
+                    <button class="menu-icon" type="button" data-toggle="example-menu"></button>
+                    <div class="title-bar-title">Menu</div>
+                </div>
+
+                <div class="top-bar" id="example-menu">
+                    <div class="top-bar-left">
+                        <ul class="vertical menu">
+                            <li class="menu-text">Your Favs</li>
+                            <li>
+                                <a href="index.html">Dinosaurs</a>
+                                <ul class="menu vertical nested">
+                                    <li><a href="carnivore.html">Carnivores</a></li>
+                                    <li><a href="herbivore.html">Herbivores</a></li>
+                                    <li><a href="omnivore.html">Omnivores</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="top-bar-right">
+                        <ul class="menu">
+                            <li><input type="search" placeholder="Search"></li>
+                            <li><button type="button" class="button">Search</button></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
             <div class="medium-10 column">
                 <h2>Dino<span>saurs</span></h2>
@@ -74,17 +100,22 @@
                         </div>
                     </div>
                 </form>
+                <div class="small-10">
+                    <ul id="dino-list" class="no-bullet">
+                   
+                    </ul>
+                </div>
             </div>
         </div>
-        <div class="row">
+        <!--<div class="row">
             <div class="medium-8 medium-offset-2 column">
                 <ul id="dino-list" class="no-bullet">
                    
                 </ul>
             </div>
-        </div>
+        </div>-->
 
-         <li class="dino template">
+        <li class="dino template">
             <span class="dino-pic">
                 <img id="picture" height="70px" width="70px">                            
             </span>

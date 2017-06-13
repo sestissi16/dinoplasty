@@ -8,6 +8,7 @@ class App {
         this.omnivores = []
         this.list = document
             .querySelector(selectors.listSelector)
+        
         this.template = document
             .querySelector(selectors.templateSelector)
         document
