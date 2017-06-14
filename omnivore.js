@@ -12,7 +12,7 @@ class Omni {
     }
 
     load(){
-        const omniJSON = localStorage.getItem('carnivores')
+        const omniJSON = localStorage.getItem('omnivores')
 
         const omniArray = JSON.parse(omniJSON)
 
