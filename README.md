@@ -1,3 +1,5 @@
+#The omnivore list wasn't actually working when I made the gh-pages and then I fixed it but it still won't show up correctly man
+
 # Dinoplasty (this is an h1)
 
 Dinosaurs yay!
